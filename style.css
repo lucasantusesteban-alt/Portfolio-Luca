@@ -418,8 +418,83 @@ section {
 }
 
 /* Responsive */
+/* Mobile Menu & Responsiveness */
+
+/* Smooth fade in for sections */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, visibility;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Menu Toggle Button (Burger) */
+.menu-toggle {
+    display: none;
+    z-index: 1100;
+    /* Above the overlay */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: var(--text-primary);
+    position: relative;
+    transition: background 0.3s;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background: var(--text-primary);
+    left: 0;
+    transition: top 0.3s 0.3s, transform 0.3s;
+    /* Delay transform to sync with top */
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    top: 8px;
+}
+
+/* Active State (X Shape) */
+.menu-toggle.active .hamburger {
+    background: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+    transition: top 0.3s, transform 0.3s 0.3s;
+    /* Delay transform */
+}
+
+.menu-toggle.active .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
+    transition: top 0.3s, transform 0.3s 0.3s;
+}
+
+/* Mobile Nav Overlay */
 @media (max-width: 768px) {
     :root {
+        --spacing-md: 2rem;
         --spacing-lg: 4rem;
         --spacing-xl: 6rem;
     }
@@ -432,55 +507,68 @@ section {
         font-size: 2rem;
     }
 
-    .nav-list {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg-primary);
-        padding: var(--spacing-md);
-        border-bottom: 2px solid var(--text-primary);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-list.active {
-        display: flex;
+    .logo {
+        z-index: 1100;
+        position: relative;
     }
 
     .menu-toggle {
         display: block;
-        background: none;
-        border: 2px solid var(--text-primary);
-        padding: 0.5rem;
-        cursor: pointer;
-        border-radius: 4px;
     }
 
-    .hamburger {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background: var(--text-primary);
-        position: relative;
-    }
-
-    .hamburger::before,
-    .hamburger::after {
-        content: '';
-        position: absolute;
-        width: 24px;
-        height: 2px;
-        background: var(--text-primary);
+    .nav-list {
+        position: fixed;
+        top: 0;
         left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--bg-primary);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s;
     }
 
-    .hamburger::before {
-        top: -8px;
+    .nav-list.active {
+        opacity: 1;
+        visibility: visible;
     }
 
-    .hamburger::after {
-        top: 8px;
+    .nav-list a {
+        font-size: 2rem;
+        font-weight: 700;
     }
+
+    .grid-4,
+    .grid-3,
+    .grid-2 {
+        grid-template-columns: 1fr;
+        /* Single column on mobile */
+    }
+
+    .benefits-list {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    /* Reverse order for flex containers if needed for improved stacking */
+    .flex-container {
+        flex-direction: column;
+    }
+
+    .flex-container>div {
+        width: 100%;
+    }
+}
+
+/* Prevent scrolling when menu is open */
+body.menu-open {
+    overflow: hidden;
 }
