@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacta con Estrella. Formulario accesible para consultas.">
+    <title>Contacto | Estrella</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700;900&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">Estrella</a>
+            <nav aria-label="Navegación principal">
+                <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
+                    <span class="sr-only">Menú</span>
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+                <ul id="main-menu" class="nav-list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="services.html">Cursos</a></li>
+                    <li><a href="about.html">Sobre Mí</a></li>
+                    <li><a href="contact.html" aria-current="page">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero secondary-hero">
+            <div class="container">
+                <h1>Contacto</h1>
+                <p>Estoy aquí para escucharte.</p>
+            </div>
+        </section>
+
+        <section class="contact-section container" style="max-width: 600px; padding-bottom: var(--spacing-xl);">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p>También puedes escribirme directamente a:</p>
+                <a href="mailto:sentidosconvida@gmail.com"
+                    style="font-size: 1.25rem; font-weight: 700; color: var(--accent-color);">sentidosconvida@gmail.com</a>
+            </div>
+            <form class="subscribe-form contact-form" action="#" method="POST" novalidate>
+
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" required autocomplete="name" aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email" aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">ENVIAR MENSAJE</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 Estrella - Despierta tus Sentidos.</p>
+            <nav aria-label="Texto legal pie de página">
+                <ul>
+                    <li><a href="contact.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
